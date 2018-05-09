@@ -104,13 +104,34 @@ $(function() {
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
+         beforeEach(function(done){
+         	//put in the loadFeed funciton and pass in an allFeeds id and
+         		//the done cb
+         	loadFeed(0, done);
+         });
+
+         it('will have at least one single .entry element within the .feed container',
+         	function(done){
+         		//grab the first child of the feed container class
+         		const containerChild = $('.feed').children()[0].className;
+         		//check to see if the first child of that object has an 
+         			//entry-link class which will count as being at least
+         			//one single .entry element in the feed container
+         		expect(containerChild).toBe("entry-link");
+         		done();
+         	});
 
     /* TODO: Write a new test suite named "New Feed Selection" */
-
-        /* TODO: Write a test that ensures when a new feed is loaded
-         * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
-         */
-    });
+    // describe("New Feed Selection", function(){
+    // 	 TODO: Write a test that ensures when a new feed is loaded
+    //      * by the loadFeed function that the content actually changes.
+    //      * Remember, loadFeed() is asynchronous.
+         
+    //      beforeEach(function(done){
+    //      	loadFeed(0, done);
+    //      });
+    // });
+        
+  });
         
 }());

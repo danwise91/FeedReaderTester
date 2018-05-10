@@ -122,15 +122,34 @@ $(function() {
          	});
 
     /* TODO: Write a new test suite named "New Feed Selection" */
-    // describe("New Feed Selection", function(){
-    // 	 TODO: Write a test that ensures when a new feed is loaded
-    //      * by the loadFeed function that the content actually changes.
-    //      * Remember, loadFeed() is asynchronous.
-         
-    //      beforeEach(function(done){
-    //      	loadFeed(0, done);
-    //      });
-    // });
+    describe("New Feed Selection", function(){
+    	 // TODO: Write a test that ensures when a new feed is loaded
+      //    * by the loadFeed function that the content actually changes.
+      //    * Remember, loadFeed() is asynchronous.
+         let feedOne;
+         let feedTwo;
+
+         //set each variable to the innerhtml of the first and second feeds
+          //in allFeeds. Call the function twice to get and set the values
+          //for the two variables 
+         beforeEach(function(done){
+         	loadFeed(0, function(){
+         	  feedOne = $('.feed').html();
+         	});
+         	
+         	loadFeed(1, function(){
+         			feedTwo = $('.feed').html();
+         			done();
+         	});
+         });
+
+         //compare the html of feedOne to make sure it is not the same as
+          //feedTwo 
+         it("changes the feed content each time its loaded", function(done){
+         	expect(feedOne).not.toBe(feedTwo);
+         	done();
+         });
+    });
         
   });
         
